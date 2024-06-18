@@ -1,0 +1,49 @@
+.navbar {
+  background-color: #4a92df;
+}
+
+.btn-dark {
+  background-color: #6ba6e5;
+  border: rgb(240, 242, 245);
+}
+
+.btn-dark:hover {
+  background-color: #649bd7;
+}
+
+.text-justify {
+  text-align: justify;
+  text-justify: inter-word;
+  margin-top: -15px;
+}
+
+.reaction {
+  margin-top: -10px;
+}
+
+.item-cateogry {
+  margin-top: -10px;
+  margin-left: 0px;
+}
+
+.item-cateogry button {
+  height: 30px;
+}
+.title {
+  background-color: #f4f4f5;
+}
+.thread-item {
+  cursor: pointer;
+}
+
+.thread-item > header,
+.item-cateogry,
+.reaction {
+  cursor: default;
+}
+
+.loading {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+}

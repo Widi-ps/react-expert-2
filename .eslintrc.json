@@ -1,0 +1,40 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": ["plugin:react/recommended", "airbnb"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "react-hooks"],
+  "rules": {
+    "no-unused-vars": "warn",
+    "semi": "warn",
+    "no-alert": "off",
+    "react-refresh/only-export-components": "off",
+    "linebreak-style": "off",
+    "jsx-quotes": ["error", "prefer-single"],
+    "react/jsx-props-no-spreading": "off",
+    "import/prefer-default-export": "off",
+    "comma-dangle": "off",
+    "eol-last": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/no-danger": "off",
+    "react/forbid-prop-types": "off",
+    "react/require-default-props": "off",
+    "object-curly-newline": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "import/no-extraneous-dependencies": "off",
+    "react/jsx-no-bind": "off",
+    "react/jsx-boolean-value" : "off",
+    "jsx-a11y/anchor-is-valid" : "off",
+    "max-len": "off",
+  }
+}
