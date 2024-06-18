@@ -4,11 +4,11 @@
  * - asyncToggleLikeThreadDetail
  *   - should render RegisterInput component correctly
  *   - should handle input changes correctly
- * 
+ *
  * - asyncToggleDislikeThreadDetail
  *   - should call the correct API and dispatch actions
  *   - should call the API again if it fails and dispatch the correct actions
- * 
+ *
  * - asyncToggleNeutralLikeThreadDetail
  *   - should call the correct API and dispatch actions
  *   - should call the API again if it fails and dispatch the correct actions

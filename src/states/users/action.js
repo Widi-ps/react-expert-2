@@ -13,6 +13,7 @@ function receiveUsersActionCreator(users) {
     },
   };
 }
+
 function asyncRegisterUser({ name, email, password }) {
   return async (dispatch) => {
     dispatch(showLoading());
