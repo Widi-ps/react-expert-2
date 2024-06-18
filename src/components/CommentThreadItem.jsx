@@ -1,8 +1,8 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
-import { postedAt } from '../utils';
+import React from 'react'
+import { useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import PropTypes from 'prop-types'
+import { postedAt } from '../utils'
 
 function CommentThreadItem({
   id,
@@ -16,85 +16,85 @@ function CommentThreadItem({
   neutralLike,
   neutralDislike,
 }) {
-  const authUser = useSelector((states) => states.authUser);
-  const isThreadLiked = upVotesBy.includes(authUser.id);
-  const isThreadDisliked = downVotesBy.includes(authUser.id);
+  const authUser = useSelector((states) => states.authUser)
+  const isThreadLiked = upVotesBy.includes(authUser.id)
+  const isThreadDisliked = downVotesBy.includes(authUser.id)
 
-  const { id: idThread } = useParams();
+  const { id: idThread } = useParams()
   function onLikeClick(e) {
-    e.stopPropagation();
+    e.stopPropagation()
     if (!isThreadLiked && !isThreadDisliked) {
-      like(idThread, id);
+      like(idThread, id)
     } else if (isThreadDisliked) {
-      neutralDislike(idThread, id);
-      like(idThread, id);
+      neutralDislike(idThread, id)
+      like(idThread, id)
     } else if (isThreadLiked) {
-      neutralLike(idThread, id);
+      neutralLike(idThread, id)
     }
   }
 
   function onDislikeClick(e) {
-    e.stopPropagation();
+    e.stopPropagation()
 
     if (!isThreadLiked && !isThreadDisliked) {
-      dislike(idThread, id);
+      dislike(idThread, id)
     } else if (isThreadLiked) {
-      neutralLike(idThread, id);
-      dislike(idThread, id);
+      neutralLike(idThread, id)
+      dislike(idThread, id)
     } else if (isThreadDisliked) {
-      neutralDislike(idThread, id);
+      neutralDislike(idThread, id)
     }
   }
   return (
-    <div className='p-2 mb-3 border '>
-      <div className='d-flex flex-row mt-3'>
-        <div className='p-2'>
+    <div className="p-2 mb-3 border ">
+      <div className="d-flex flex-row mt-3">
+        <div className="p-2">
           <img
             src={owner.avatar}
-            className='rounded-circle'
-            height='25'
-            width='25'
-            alt='Avatar'
+            className="rounded-circle"
+            height="25"
+            width="25"
+            alt="Avatar"
           />
         </div>
-        <div className='p-2'>
-          <p className='fw-bold'>{owner.name}</p>
+        <div className="p-2">
+          <p className="fw-bold">{owner.name}</p>
         </div>
-        <div className='p-2'>
-          <p className='fw-light fst-italic fs-6'> • {postedAt(createdAt)}</p>
+        <div className="p-2">
+          <p className="fw-light fst-italic fs-6"> • {postedAt(createdAt)}</p>
         </div>
       </div>
       <div>
         <p
-          className='text-justify'
+          className="text-justify"
           dangerouslySetInnerHTML={{ __html: content }}
         />
       </div>
 
-      <div className='d-flex flex-row mb-2 reaction'>
+      <div className="d-flex flex-row mb-2 reaction">
         <div>
-          <button type='button' className='btn' onClick={onLikeClick}>
+          <button type="button" className="btn" onClick={onLikeClick}>
             {isThreadLiked ? (
-              <i className='bi bi-hand-thumbs-up-fill text-primary' />
+              <i className="bi bi-hand-thumbs-up-fill text-primary" />
             ) : (
-              <i className='bi bi-hand-thumbs-up' />
+              <i className="bi bi-hand-thumbs-up" />
             )}{' '}
             {upVotesBy.length}
           </button>
         </div>
         <div>
-          <button type='button' className='btn' onClick={onDislikeClick}>
+          <button type="button" className="btn" onClick={onDislikeClick}>
             {isThreadDisliked ? (
-              <i className='bi bi-hand-thumbs-down-fill text-danger' />
+              <i className="bi bi-hand-thumbs-down-fill text-danger" />
             ) : (
-              <i className='bi bi-hand-thumbs-down' />
+              <i className="bi bi-hand-thumbs-down" />
             )}{' '}
             {downVotesBy.length}
           </button>
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 CommentThreadItem.propTypes = {
@@ -108,6 +108,6 @@ CommentThreadItem.propTypes = {
   dislike: PropTypes.func.isRequired,
   neutralLike: PropTypes.func.isRequired,
   neutralDislike: PropTypes.func.isRequired,
-};
+}
 
-export default CommentThreadItem;
+export default CommentThreadItem

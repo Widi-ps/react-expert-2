@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import ThreadItem from './ThreadItem';
+import React from 'react'
+import PropTypes from 'prop-types'
+import ThreadItem from './ThreadItem'
 
 function ThreadList({ threads, like, dislike, neutralLike, neutralDislike }) {
   return threads.map((thread) => (
@@ -12,7 +12,7 @@ function ThreadList({ threads, like, dislike, neutralLike, neutralDislike }) {
       neutralLike={neutralLike}
       neutralDislike={neutralDislike}
     />
-  ));
+  ))
 }
 ThreadList.propTypes = {
   threads: PropTypes.array.isRequired,
@@ -20,6 +20,6 @@ ThreadList.propTypes = {
   dislike: PropTypes.func.isRequired,
   neutralLike: PropTypes.func.isRequired,
   neutralDislike: PropTypes.func.isRequired,
-};
+}
 
-export default ThreadList;
+export default ThreadList

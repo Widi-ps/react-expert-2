@@ -1,4 +1,4 @@
-import api from '../../utils/api';
+import api from '../../utils/api'
 
 const ActionType = {
   RECEIVE_THREADS: 'RECEIVE_THREADS',
@@ -7,7 +7,7 @@ const ActionType = {
   TOGGLE_DISLIKE_THREAD: 'TOGGLE_DISLIKE_THREAD',
   TOGGLE_NEUTRAL_LIKE_THREAD: 'TOGGLE_NEUTRAL_LIKE_THREAD',
   TOGGLE_NEUTRAL_DISLIKE_THREAD: 'TOGGLE_NEUTRAL_DISLIKE_THREAD',
-};
+}
 
 function receiveThreadsActionCreator(threads) {
   return {
@@ -15,7 +15,7 @@ function receiveThreadsActionCreator(threads) {
     payload: {
       threads,
     },
-  };
+  }
 }
 
 function addThreadActionCreator(thread) {
@@ -24,18 +24,18 @@ function addThreadActionCreator(thread) {
     payload: {
       thread,
     },
-  };
+  }
 }
 
 function asyncAddThread({ title, category, body }) {
   return async (dispatch) => {
     try {
-      const thread = await api.createThread({ title, category, body });
-      dispatch(addThreadActionCreator(thread));
+      const thread = await api.createThread({ title, category, body })
+      dispatch(addThreadActionCreator(thread))
     } catch (error) {
-      alert(error.message);
+      alert(error.message)
     }
-  };
+  }
 }
 
 function toggleLikeThreadActionCreator({ threadId, userId }) {
@@ -45,7 +45,7 @@ function toggleLikeThreadActionCreator({ threadId, userId }) {
       threadId,
       userId,
     },
-  };
+  }
 }
 
 function toggleDislikeThreadActionCreator({ threadId, userId }) {
@@ -55,7 +55,7 @@ function toggleDislikeThreadActionCreator({ threadId, userId }) {
       threadId,
       userId,
     },
-  };
+  }
 }
 
 function toggleNeutralLikeThreadActionCreator({ threadId, userId }) {
@@ -65,7 +65,7 @@ function toggleNeutralLikeThreadActionCreator({ threadId, userId }) {
       threadId,
       userId,
     },
-  };
+  }
 }
 
 function toggleNeutralDislikeThreadActionCreator({ threadId, userId }) {
@@ -75,79 +75,77 @@ function toggleNeutralDislikeThreadActionCreator({ threadId, userId }) {
       threadId,
       userId,
     },
-  };
+  }
 }
 
 function asyncToggleLikeThread(threadId) {
   return async (dispatch, getState) => {
-    const { authUser } = getState();
+    const { authUser } = getState()
 
-    dispatch(toggleLikeThreadActionCreator({ threadId, userId: authUser.id }));
+    dispatch(toggleLikeThreadActionCreator({ threadId, userId: authUser.id }))
 
     try {
-      await api.toggleUpVoteThread(threadId);
+      await api.toggleUpVoteThread(threadId)
     } catch (error) {
-      alert(error.message);
-      dispatch(
-        toggleLikeThreadActionCreator({ threadId, userId: authUser.id })
-      );
+      alert(error.message)
+      dispatch(toggleLikeThreadActionCreator({ threadId, userId: authUser.id }))
     }
-  };
+  }
 }
 
 function asyncToggleDislikeThread(threadId) {
   return async (dispatch, getState) => {
-    const { authUser } = getState();
+    const { authUser } = getState()
     dispatch(
-      toggleDislikeThreadActionCreator({ threadId, userId: authUser.id })
-    );
+      toggleDislikeThreadActionCreator({ threadId, userId: authUser.id }),
+    )
 
     try {
-      await api.toggleDownVoteThread(threadId);
+      await api.toggleDownVoteThread(threadId)
     } catch (error) {
-      alert(error.message);
+      alert(error.message)
       dispatch(
-        toggleDislikeThreadActionCreator({ threadId, userId: authUser.id })
-      );
+        toggleDislikeThreadActionCreator({ threadId, userId: authUser.id }),
+      )
     }
-  };
+  }
 }
 
 function asyncToggleNeutralLikeThread(threadId) {
   return async (dispatch, getState) => {
-    const { authUser } = getState();
+    const { authUser } = getState()
 
     dispatch(
-      toggleNeutralLikeThreadActionCreator({ threadId, userId: authUser.id })
-    );
+      toggleNeutralLikeThreadActionCreator({ threadId, userId: authUser.id }),
+    )
 
     try {
-      await api.toggleNeutralVoteThread(threadId);
+      await api.toggleNeutralVoteThread(threadId)
     } catch (error) {
-      alert(error.message);
+      alert(error.message)
       dispatch(
-        toggleNeutralLikeThreadActionCreator({ threadId, userId: authUser.id })
-      );
+        toggleNeutralLikeThreadActionCreator({ threadId, userId: authUser.id }),
+      )
     }
-  };
+  }
 }
 
 function asyncToggleNeutralDislikeThread(threadId) {
   return async (dispatch, getState) => {
-    const { authUser } = getState();
+    const { authUser } = getState()
     dispatch(
-      toggleDislikeThreadActionCreator({ threadId, userId: authUser.id })
-    );
+      toggleDislikeThreadActionCreator({ threadId, userId: authUser.id }),
+    )
 
     try {
-      await api.toggleNeutralVoteThread(threadId);
+      await api.toggleNeutralVoteThread(threadId)
     } catch (error) {
-      alert(error.message);
+      alert(error.message)
       dispatch(
-        toggleDislikeThreadActionCreator({ threadId, userId: authUser.id })
-      );
+        toggleDislikeThreadActionCreator({ threadId, userId: authUser.id }),
+      )
     }
-  };
+  }
 }
 
 export {
@@ -163,4 +161,4 @@ export {
   asyncToggleDislikeThread,
   asyncToggleNeutralLikeThread,
   asyncToggleNeutralDislikeThread,
-};
+}

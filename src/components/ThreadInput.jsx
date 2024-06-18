@@ -1,89 +1,89 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import useInput from '../hooks/useInput';
+import React from 'react'
+import PropTypes from 'prop-types'
+import useInput from '../hooks/useInput'
 
 function ThreadInput({ addThread }) {
-  const [title, setTitle] = useInput('');
-  const [category, setCategory] = useInput('');
-  const [body, setBody] = useInput('');
+  const [title, setTitle] = useInput('')
+  const [category, setCategory] = useInput('')
+  const [body, setBody] = useInput('')
 
   function handleSubmit(e) {
-    addThread({ title, category, body });
-    e.preventDefault();
+    addThread({ title, category, body })
+    e.preventDefault()
   }
   return (
     <div
-      className='modal fade'
-      id='exampleModal'
-      tabIndex='-1'
-      aria-labelledby='exampleModalLabel'
-      aria-hidden='true'
+      className="modal fade"
+      id="exampleModal"
+      tabIndex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
     >
-      <div className='modal-dialog'>
-        <div className='modal-content'>
-          <div className='modal-header'>
-            <h1 className='modal-title fs-5' id='exampleModalLabel'>
+      <div className="modal-dialog">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h1 className="modal-title fs-5" id="exampleModalLabel">
               Add New Threads
             </h1>
             <button
-              type='button'
-              className='btn-close'
-              data-bs-dismiss='modal'
-              aria-label='Close'
+              type="button"
+              className="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
             />
           </div>
-          <form action=''>
-            <div className='modal-body'>
-              <div className='mb-3'>
-                <label htmlFor='title' className='form-label'>
+          <form action="">
+            <div className="modal-body">
+              <div className="mb-3">
+                <label htmlFor="title" className="form-label">
                   Title
                 </label>
                 <input
-                  type='text'
+                  type="text"
                   value={title}
                   onChange={setTitle}
-                  className='form-control'
-                  id='title'
-                  placeholder='Title'
+                  className="form-control"
+                  id="title"
+                  placeholder="Title"
                 />
               </div>
-              <div className='mb-3'>
-                <label htmlFor='category' className='form-label'>
+              <div className="mb-3">
+                <label htmlFor="category" className="form-label">
                   Category
                 </label>
                 <input
-                  type='text'
+                  type="text"
                   value={category}
                   onChange={setCategory}
-                  className='form-control'
-                  id='category'
-                  placeholder='Category'
+                  className="form-control"
+                  id="category"
+                  placeholder="Category"
                 />
               </div>
-              <div className='mb-3'>
-                <label htmlFor='bodyText' className='form-label'>
+              <div className="mb-3">
+                <label htmlFor="bodyText" className="form-label">
                   Thread
                 </label>
                 <textarea
-                  className='form-control'
+                  className="form-control"
                   onChange={setBody}
                   value={body}
-                  id='bodyText'
-                  rows='3'
+                  id="bodyText"
+                  rows="3"
                 />
               </div>
             </div>
-            <div className='modal-footer'>
+            <div className="modal-footer">
               <button
-                type='button'
-                className='btn btn-secondary'
-                data-bs-dismiss='modal'
+                type="button"
+                className="btn btn-secondary"
+                data-bs-dismiss="modal"
               >
                 Close
               </button>
               <button
-                type='submit'
-                className='btn btn-dark'
+                type="submit"
+                className="btn btn-dark"
                 onClick={handleSubmit}
               >
                 Submit
@@ -93,11 +93,11 @@ function ThreadInput({ addThread }) {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 ThreadInput.propTypes = {
   addThread: PropTypes.func.isRequired,
-};
+}
 
-export default ThreadInput;
+export default ThreadInput

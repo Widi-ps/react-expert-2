@@ -1,8 +1,8 @@
 const api = (() => {
-  const BASE_URL = 'https://forum-api.dicoding.dev/v1';
+  const BASE_URL = 'https://forum-api.dicoding.dev/v1'
 
   function getAccessToken() {
-    return localStorage.getItem('accessToken');
+    return localStorage.getItem('accessToken')
   }
 
   async function fetchWithAuth(url, options = {}) {
@@ -12,11 +12,11 @@ const api = (() => {
         ...options.headers,
         Authorization: `Bearer ${getAccessToken()}`,
       },
-    });
+    })
   }
 
   function putAccessToken(token) {
-    localStorage.setItem('accessToken', token);
+    localStorage.setItem('accessToken', token)
   }
 
   // User Endpoints
@@ -32,20 +32,20 @@ const api = (() => {
         email,
         password,
       }),
-    });
+    })
 
-    const responseJson = await response.json();
-    const { status, message } = responseJson;
+    const responseJson = await response.json()
+    const { status, message } = responseJson
 
     if (status !== 'success') {
-      throw new Error(message);
+      throw new Error(message)
     }
 
     const {
       data: { user },
-    } = responseJson;
+    } = responseJson
 
-    return user;
+    return user
   }
 
   async function login({ email, password }) {
@@ -58,95 +58,95 @@ const api = (() => {
         email,
         password,
       }),
-    });
+    })
 
-    const responseJson = await response.json();
+    const responseJson = await response.json()
 
-    const { status, message } = responseJson;
+    const { status, message } = responseJson
 
     if (status !== 'success') {
-      throw new Error(message);
+      throw new Error(message)
     }
 
     const {
       data: { token },
-    } = responseJson;
+    } = responseJson
 
-    return token;
+    return token
   }
 
   async function getOwnProfile() {
-    const response = await fetchWithAuth(`${BASE_URL}/users/me`);
+    const response = await fetchWithAuth(`${BASE_URL}/users/me`)
 
-    const responseJson = await response.json();
+    const responseJson = await response.json()
 
-    const { status, message } = responseJson;
+    const { status, message } = responseJson
 
     if (status !== 'success') {
-      throw new Error(message);
+      throw new Error(message)
     }
 
     const {
       data: { user },
-    } = responseJson;
+    } = responseJson
 
-    return user;
+    return user
   }
 
   async function getAllUsers() {
-    const response = await fetch(`${BASE_URL}/users`);
+    const response = await fetch(`${BASE_URL}/users`)
 
-    const responseJson = await response.json();
+    const responseJson = await response.json()
 
-    const { status, message } = responseJson;
+    const { status, message } = responseJson
 
     if (status !== 'success') {
-      throw new Error(message);
+      throw new Error(message)
     }
 
     const {
       data: { users },
-    } = responseJson;
+    } = responseJson
 
-    return users;
+    return users
   }
 
   async function getAllThreads() {
-    const response = await fetch(`${BASE_URL}/threads`);
+    const response = await fetch(`${BASE_URL}/threads`)
 
-    const responseJson = await response.json();
+    const responseJson = await response.json()
 
-    const { status, message } = responseJson;
+    const { status, message } = responseJson
 
     if (status !== 'success') {
-      throw new Error(message);
+      throw new Error(message)
     }
 
     const {
       data: { threads },
-    } = responseJson;
+    } = responseJson
 
-    return threads;
+    return threads
   }
 
   // Threads Endpoints
 
   async function getThreadDetail(id) {
-    const response = await fetch(`${BASE_URL}/threads/${id}`);
+    const response = await fetch(`${BASE_URL}/threads/${id}`)
 
-    const responseJson = await response.json();
+    const responseJson = await response.json()
 
-    const { status, message } = responseJson;
+    const { status, message } = responseJson
 
     if (status !== 'success') {
-      throw new Error(message);
+      throw new Error(message)
     }
 
     const {
       data: { detailThread },
-    } = responseJson;
+    } = responseJson
 
-    return detailThread;
+    return detailThread
   }
 
   async function createThread({ title, body, category }) {
@@ -160,21 +160,21 @@ const api = (() => {
         body,
         category,
       }),
-    });
+    })
 
-    const responseJson = await response.json();
+    const responseJson = await response.json()
 
-    const { status, message } = responseJson;
+    const { status, message } = responseJson
 
     if (status !== 'success') {
-      throw new Error(message);
+      throw new Error(message)
     }
 
     const {
       data: { thread },
-    } = responseJson;
+    } = responseJson
 
-    return thread;
+    return thread
   }
 
   // Comments Endpoints
@@ -190,22 +190,22 @@ const api = (() => {
         body: JSON.stringify({
           content,
         }),
-      }
-    );
+      },
+    )
 
-    const responseJson = await response.json();
+    const responseJson = await response.json()
 
-    const { status, message } = responseJson;
+    const { status, message } = responseJson
 
     if (status !== 'success') {
-      throw new Error(message);
+      throw new Error(message)
     }
 
     const {
       data: { comment },
-    } = responseJson;
+    } = responseJson
 
-    return comment;
+    return comment
   }
 
   // Votes Endpoints
@@ -219,14 +219,14 @@ const api = (() => {
       body: JSON.stringify({
         threadId: id,
       }),
-    });
+    })
 
-    const responseJson = await response.json();
+    const responseJson = await response.json()
 
-    const { status, message } = responseJson;
+    const { status, message } = responseJson
 
     if (status !== 'success') {
-      throw new Error(message);
+      throw new Error(message)
     }
   }
 
@@ -241,15 +241,15 @@ const api = (() => {
         body: JSON.stringify({
           threadId: id,
         }),
-      }
-    );
+      },
+    )
 
-    const responseJson = await response.json();
+    const responseJson = await response.json()
 
-    const { status, message } = responseJson;
+    const { status, message } = responseJson
 
     if (status !== 'success') {
-      throw new Error(message);
+      throw new Error(message)
     }
   }
 
@@ -264,15 +264,15 @@ const api = (() => {
         body: JSON.stringify({
           threadId: id,
         }),
-      }
-    );
+      },
+    )
 
-    const responseJson = await response.json();
+    const responseJson = await response.json()
 
-    const { status, message } = responseJson;
+    const { status, message } = responseJson
 
     if (status !== 'success') {
-      throw new Error(message);
+      throw new Error(message)
     }
   }
 
@@ -288,14 +288,14 @@ const api = (() => {
           threadId,
           commentId,
         }),
-      }
-    );
-    const responseJson = await response.json();
+      },
+    )
+    const responseJson = await response.json()
 
-    const { status, message } = responseJson;
+    const { status, message } = responseJson
 
     if (status !== 'success') {
-      throw new Error(message);
+      throw new Error(message)
     }
   }
 
@@ -311,14 +311,14 @@ const api = (() => {
           threadId,
           commentId,
         }),
-      }
-    );
-    const responseJson = await response.json();
+      },
+    )
+    const responseJson = await response.json()
 
-    const { status, message } = responseJson;
+    const { status, message } = responseJson
 
     if (status !== 'success') {
-      throw new Error(message);
+      throw new Error(message)
     }
   }
 
@@ -334,36 +334,36 @@ const api = (() => {
           threadId,
           commentId,
         }),
-      }
-    );
+      },
+    )
 
-    const responseJson = await response.json();
+    const responseJson = await response.json()
 
-    const { status, message } = responseJson;
+    const { status, message } = responseJson
 
     if (status !== 'success') {
-      throw new Error(message);
+      throw new Error(message)
     }
   }
 
   // Leaderboards Endpoints
 
   async function getAllLeaderBoards() {
-    const response = await fetch(`${BASE_URL}/leaderboards`);
+    const response = await fetch(`${BASE_URL}/leaderboards`)
 
-    const responseJson = await response.json();
+    const responseJson = await response.json()
 
-    const { status, message } = responseJson;
+    const { status, message } = responseJson
 
     if (status !== 'success') {
-      throw new Error(message);
+      throw new Error(message)
     }
 
     const {
       data: { leaderboards },
-    } = responseJson;
+    } = responseJson
 
-    return leaderboards;
+    return leaderboards
   }
 
   return {
@@ -384,7 +384,7 @@ const api = (() => {
     toggleUpVoteComment,
     toggleDownVoteComment,
     toggleNeutralVoteComment,
-  };
-})();
+  }
+})()
 
-export default api;
+export default api

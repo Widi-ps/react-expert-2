@@ -1,5 +1,5 @@
-import { hideLoading, showLoading } from 'react-redux-loading-bar';
-import api from '../../utils/api';
+import { hideLoading, showLoading } from 'react-redux-loading-bar'
+import api from '../../utils/api'
 
 const ActionType = {
   ADD_COMMENT: 'ADD_COMMENT',
@@ -9,7 +9,7 @@ const ActionType = {
   TOGGLE_DISLIKE_COMMENT: 'TOGGLE_DISLIKE_COMMENT',
   TOGGLE_NEUTRAL_DISLIKE_COMMENT: 'TOGGLE_NEUTRAL_DISLIKE_COMMENT',
   CLEAR_COMMENTS: 'CLEAR_COMMENTS',
-};
+}
 
 function addCommentThreadActionCreator(comment) {
   return {
@@ -17,7 +17,7 @@ function addCommentThreadActionCreator(comment) {
     payload: {
       comment,
     },
-  };
+  }
 }
 
 function receiveCommentsActionCreator(comments) {
@@ -26,7 +26,7 @@ function receiveCommentsActionCreator(comments) {
     payload: {
       comments,
     },
-  };
+  }
 }
 
 function ToggleLikeCommentActionCreator({ threadId, commentId, userId }) {
@@ -37,7 +37,7 @@ function ToggleLikeCommentActionCreator({ threadId, commentId, userId }) {
       commentId,
       userId,
     },
-  };
+  }
 }
 
 function ToggleNeutralLikeCommentActionCreator({
@@ -52,7 +52,7 @@ function ToggleNeutralLikeCommentActionCreator({
       commentId,
       userId,
     },
-  };
+  }
 }
 
 function ToggleDislikeCommentActionCreator({ threadId, commentId, userId }) {
@@ -63,7 +63,7 @@ function ToggleDislikeCommentActionCreator({ threadId, commentId, userId }) {
       commentId,
       userId,
     },
-  };
+  }
 }
 function ToggleNeutralDislikeCommentActionCreator({
   threadId,
@@ -77,146 +77,146 @@ function ToggleNeutralDislikeCommentActionCreator({
       commentId,
       userId,
     },
-  };
+  }
 }
 
 function asyncToggleLikeComment({ threadId, commentId }) {
   return async (dispatch, getState) => {
-    const { authUser } = getState();
-    dispatch(showLoading());
+    const { authUser } = getState()
+    dispatch(showLoading())
     dispatch(
       ToggleLikeCommentActionCreator({
         threadId,
         commentId,
         userId: authUser.id,
-      })
-    );
+      }),
+    )
 
     try {
-      await api.toggleUpVoteComment({ threadId, commentId });
+      await api.toggleUpVoteComment({ threadId, commentId })
     } catch (error) {
-      alert(error.message);
+      alert(error.message)
       dispatch(
         ToggleLikeCommentActionCreator({
           threadId,
           commentId,
           userId: authUser.id,
-        })
-      );
+        }),
+      )
     }
-    dispatch(hideLoading());
-  };
+    dispatch(hideLoading())
+  }
 }
 
 function asyncToggleDislikeComment({ threadId, commentId }) {
   return async (dispatch, getState) => {
-    const { authUser } = getState();
-    dispatch(showLoading());
+    const { authUser } = getState()
+    dispatch(showLoading())
     dispatch(
       ToggleDislikeCommentActionCreator({
         threadId,
         commentId,
         userId: authUser.id,
-      })
-    );
+      }),
+    )
 
     try {
-      await api.toggleDownVoteComment({ threadId, commentId });
+      await api.toggleDownVoteComment({ threadId, commentId })
     } catch (error) {
-      alert(error.message);
+      alert(error.message)
       dispatch(
         ToggleDislikeCommentActionCreator({
           threadId,
           commentId,
           userId: authUser.id,
-        })
-      );
+        }),
+      )
     }
-    dispatch(hideLoading());
-  };
+    dispatch(hideLoading())
+  }
 }
 
 function asyncToggleNeutralLikeComment({ threadId, commentId }) {
   return async (dispatch, getState) => {
-    const { authUser } = getState();
-    dispatch(showLoading());
+    const { authUser } = getState()
+    dispatch(showLoading())
     dispatch(
       ToggleNeutralLikeCommentActionCreator({
         threadId,
         commentId,
         userId: authUser.id,
-      })
-    );
+      }),
+    )
 
     try {
-      await api.toggleNeutralVoteComment({ threadId, commentId });
+      await api.toggleNeutralVoteComment({ threadId, commentId })
     } catch (error) {
-      alert(error.message);
+      alert(error.message)
       dispatch(
         ToggleNeutralLikeCommentActionCreator({
           threadId,
           commentId,
           userId: authUser.id,
-        })
-      );
+        }),
+      )
     }
-    dispatch(hideLoading());
-  };
+    dispatch(hideLoading())
+  }
 }
 
 function asyncToggleNeutralDislikeComment({ threadId, commentId }) {
   return async (dispatch, getState) => {
-    const { authUser } = getState();
+    const { authUser } = getState()
 
     dispatch(
       ToggleNeutralDislikeCommentActionCreator({
         threadId,
         commentId,
         userId: authUser.id,
-      })
-    );
-    dispatch(showLoading());
+      }),
+    )
+    dispatch(showLoading())
     try {
-      await api.toggleNeutralVoteComment({ threadId, commentId });
+      await api.toggleNeutralVoteComment({ threadId, commentId })
     } catch (error) {
-      alert(error.message);
+      alert(error.message)
       dispatch(
         ToggleNeutralDislikeCommentActionCreator({
           threadId,
           commentId,
           userId: authUser.id,
-        })
-      );
+        }),
+      )
     }
-    dispatch(hideLoading());
-  };
+    dispatch(hideLoading())
+  }
 }
 
 function asyncReceiveComments(threadId) {
   return async (dispatch) => {
-    dispatch(showLoading());
+    dispatch(showLoading())
     try {
-      const threadDetail = await api.getThreadDetail(threadId);
-      dispatch(receiveCommentsActionCreator(threadDetail.comments));
+      const threadDetail = await api.getThreadDetail(threadId)
+      dispatch(receiveCommentsActionCreator(threadDetail.comments))
     } catch (error) {
-      alert(error.message);
+      alert(error.message)
     }
-    dispatch(hideLoading());
-  };
+    dispatch(hideLoading())
+  }
 }
 
 function asyncAddCommentOnThread({ content, commentTo }) {
   return async (dispatch) => {
-    dispatch(showLoading());
+    dispatch(showLoading())
 
     try {
-      const comment = await api.createComment({ content, commentTo });
-      dispatch(addCommentThreadActionCreator(comment));
+      const comment = await api.createComment({ content, commentTo })
+      dispatch(addCommentThreadActionCreator(comment))
     } catch (error) {
-      alert(error.message);
+      alert(error.message)
     }
-    dispatch(hideLoading());
-  };
+    dispatch(hideLoading())
+  }
 }
 
 export {
@@ -232,4 +232,4 @@ export {
   asyncToggleNeutralDislikeComment,
   asyncToggleNeutralLikeComment,
   asyncAddCommentOnThread,
-};
+}

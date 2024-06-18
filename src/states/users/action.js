@@ -1,9 +1,9 @@
-import { hideLoading, showLoading } from 'react-redux-loading-bar';
-import api from '../../utils/api';
+import { hideLoading, showLoading } from 'react-redux-loading-bar'
+import api from '../../utils/api'
 
 const ActionType = {
   RECEVE_USERS: 'RECEIVE_USERS',
-};
+}
 
 function receiveUsersActionCreator(users) {
   return {
@@ -11,19 +11,19 @@ function receiveUsersActionCreator(users) {
     payload: {
       users,
     },
-  };
+  }
 }
 
 function asyncRegisterUser({ name, email, password }) {
   return async (dispatch) => {
-    dispatch(showLoading());
+    dispatch(showLoading())
     try {
-      await api.register({ name, email, password });
+      await api.register({ name, email, password })
     } catch (error) {
-      alert(error.message);
+      alert(error.message)
     }
-    dispatch(hideLoading());
-  };
+    dispatch(hideLoading())
+  }
 }
 
-export { ActionType, asyncRegisterUser, receiveUsersActionCreator };
+export { ActionType, asyncRegisterUser, receiveUsersActionCreator }

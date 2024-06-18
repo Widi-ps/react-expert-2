@@ -1,14 +1,14 @@
-import { useState } from 'react';
+import { useState } from 'react'
 
 // Hooks for an input
 function useInput(defaultValue = '') {
-  const [value, setValue] = useState(defaultValue);
+  const [value, setValue] = useState(defaultValue)
 
   function handleValueChange({ target }) {
-    setValue(target.value);
+    setValue(target.value)
   }
 
-  return [value, handleValueChange ,setValue];
+  return [value, handleValueChange, setValue]
 }
 
-export default useInput;
+export default useInput

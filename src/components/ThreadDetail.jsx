@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { ubahFormatTanggal } from '../utils/index';
-import CommentThreadInput from './CommentThreadInput';
-import CommentThreadList from './CommentThreadList';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { ubahFormatTanggal } from '../utils/index'
+import CommentThreadInput from './CommentThreadInput'
+import CommentThreadList from './CommentThreadList'
 
 function ThreadDetail({
   id,
@@ -21,131 +21,131 @@ function ThreadDetail({
   neutralDislike,
   addComment,
 }) {
-  const isThreadLiked = upVotesBy?.includes(authUser.id);
-  const isThreadDisliked = downVotesBy?.includes(authUser.id);
+  const isThreadLiked = upVotesBy?.includes(authUser.id)
+  const isThreadDisliked = downVotesBy?.includes(authUser.id)
 
   function onLikeClick(e) {
-    e.stopPropagation();
+    e.stopPropagation()
     if (!isThreadLiked && !isThreadDisliked) {
-      like(id);
+      like(id)
     } else if (isThreadDisliked) {
-      neutralDislike(id);
-      like(id);
+      neutralDislike(id)
+      like(id)
     } else if (isThreadLiked) {
-      neutralLike(id);
+      neutralLike(id)
     }
   }
 
   function onDislikeClick(e) {
-    e.stopPropagation();
+    e.stopPropagation()
 
     if (!isThreadLiked && !isThreadDisliked) {
-      dislike(id);
+      dislike(id)
     } else if (isThreadLiked) {
-      neutralLike(id);
-      dislike(id);
+      neutralLike(id)
+      dislike(id)
     } else if (isThreadDisliked) {
-      neutralDislike(id);
+      neutralDislike(id)
     }
   }
 
   if (owner == null) {
-    return null;
+    return null
   }
 
   return (
-    <div className='container mt-5 '>
-      <div className='border border-start-0 border-end-0 border-top-0'>
-        <div className='d-flex flex-row mt-3'>
-          <div className='p-2'>
+    <div className="container mt-5 ">
+      <div className="border border-start-0 border-end-0 border-top-0">
+        <div className="d-flex flex-row mt-3">
+          <div className="p-2">
             <img
               src={owner.avatar}
-              className='rounded-circle'
-              height='25'
-              width='25'
-              alt='Avatar'
+              className="rounded-circle"
+              height="25"
+              width="25"
+              alt="Avatar"
             />
           </div>
-          <div className='p-2'>
-            <p className='fw-bold'>{owner.name}</p>
+          <div className="p-2">
+            <p className="fw-bold">{owner.name}</p>
           </div>
-          <div className='p-2'>
-            <p className='fw-light fst-italic fs-6'>
+          <div className="p-2">
+            <p className="fw-light fst-italic fs-6">
               {' '}
               • {ubahFormatTanggal(createdAt)}
             </p>
           </div>
         </div>
         <article>
-          <div className='d-flex flex-column'>
+          <div className="d-flex flex-column">
             <div>
-              <p className='fw-medium'>{title}</p>
+              <p className="fw-medium">{title}</p>
             </div>
             <div>
               <p
-                className='text-justify'
+                className="text-justify"
                 dangerouslySetInnerHTML={{ __html: body }}
               />
             </div>
           </div>
         </article>
-        <div className='item-cateogry mb-3'>
+        <div className="item-cateogry mb-3">
           <button
-            type='button'
-            className='btn btn-outline-secondary btn-sm '
+            type="button"
+            className="btn btn-outline-secondary btn-sm "
             disabled
           >
             #{category}
           </button>
         </div>
-        <div className='d-flex flex-row mb-2 reaction'>
+        <div className="d-flex flex-row mb-2 reaction">
           <div>
-            <button type='button' className='btn' onClick={onLikeClick}>
+            <button type="button" className="btn" onClick={onLikeClick}>
               {isThreadLiked ? (
-                <i className='bi bi-hand-thumbs-up-fill text-primary' />
+                <i className="bi bi-hand-thumbs-up-fill text-primary" />
               ) : (
-                <i className='bi bi-hand-thumbs-up' />
+                <i className="bi bi-hand-thumbs-up" />
               )}{' '}
               {upVotesBy.length}
             </button>
           </div>
           <div>
-            <button type='button' className='btn' onClick={onDislikeClick}>
+            <button type="button" className="btn" onClick={onDislikeClick}>
               {isThreadDisliked ? (
-                <i className='bi bi-hand-thumbs-down-fill text-danger' />
+                <i className="bi bi-hand-thumbs-down-fill text-danger" />
               ) : (
-                <i className='bi bi-hand-thumbs-down' />
+                <i className="bi bi-hand-thumbs-down" />
               )}{' '}
               {downVotesBy.length}
             </button>
           </div>
           <div>
-            <button type='button' className='btn'>
-              <i className='bi bi-reply' /> {totalComments}
+            <button type="button" className="btn">
+              <i className="bi bi-reply" /> {totalComments}
             </button>
           </div>
         </div>
       </div>
 
-      <div className='d-flex flex-row mt-3'>
-        <div className='p-2'>
+      <div className="d-flex flex-row mt-3">
+        <div className="p-2">
           <img
             src={authUser.avatar}
-            className='rounded-circle'
-            height='25'
-            width='25'
-            alt='Avatar'
+            className="rounded-circle"
+            height="25"
+            width="25"
+            alt="Avatar"
           />
         </div>
-        <div className='p-2'>
-          <p className='fw-bolder'>{authUser.name}</p>
+        <div className="p-2">
+          <p className="fw-bolder">{authUser.name}</p>
         </div>
       </div>
 
       <CommentThreadInput addComment={addComment} id={id} />
       <CommentThreadList />
     </div>
-  );
+  )
 }
 ThreadDetail.propTypes = {
   id: PropTypes.string,
@@ -163,6 +163,6 @@ ThreadDetail.propTypes = {
   neutralLike: PropTypes.func,
   neutralDislike: PropTypes.func,
   addComment: PropTypes.func,
-};
+}
 
-export default ThreadDetail;
+export default ThreadDetail

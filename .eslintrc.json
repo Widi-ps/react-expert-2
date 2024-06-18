@@ -2,9 +2,13 @@
   "env": {
     "browser": true,
     "es2021": true,
-    "node": true
+    "cypress/globals": true
   },
-  "extends": ["plugin:react/recommended", "airbnb"],
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb",
+    "plugin:prettier/recommended"
+  ],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -12,30 +16,48 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react", "react-hooks"],
+  "plugins": ["react", "react-hooks", "prettier", "cypress"],
   "rules": {
-    "no-unused-vars": "warn",
-    "semi": "warn",
-    "no-alert": "off",
-    "react-refresh/only-export-components": "off",
     "linebreak-style": "off",
-    "jsx-quotes": ["error", "prefer-single"],
-    "react/jsx-props-no-spreading": "off",
+    "no-alert": "off",
+    "no-underscore-dangle": "off",
     "import/prefer-default-export": "off",
-    "comma-dangle": "off",
-    "eol-last": "off",
-    "jsx-a11y/label-has-associated-control": "off",
-    "react/jsx-one-expression-per-line": "off",
+    "import/no-extraneous-dependencies": "off",
+    "react-hooks/rules-of-hooks": "error",
     "react/no-danger": "off",
     "react/forbid-prop-types": "off",
     "react/require-default-props": "off",
-    "object-curly-newline": "off",
-    "jsx-a11y/no-static-element-interactions": "off",
-    "import/no-extraneous-dependencies": "off",
-    "react/jsx-no-bind": "off",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/jsx-props-no-spreading": "off",
     "react/jsx-boolean-value": "off",
+    "react/react-in-jsx-scope": "off",
     "jsx-a11y/anchor-is-valid": "off",
-    "max-len": "off",
-    "no-underscore-dangle": "off"
+    "eol-last": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "react/jsx-no-bind" : "off",
+    "no-param-reassign": [
+      "error",
+      {
+        "props": true,
+        "ignorePropertyModificationsFor": [
+          "state", // for Redux Toolkit
+          "acc", // for reduce accumulators
+          "e" // for e.returnvalue
+        ]
+      }
+    ]
+  },
+  "settings": {
+    "react": {
+      "version": "detect" // or specify the React version you are using, e.g., "16.14.0"
+    },
+    "import/core-modules": [
+      "@ant-design/icons",
+      "axios-mock-adapter",
+      "redux-thunk",
+      "redux-mock-store",
+      "cypress"
+    ]
   }
 }

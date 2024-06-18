@@ -1,23 +1,23 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Routes, Route } from 'react-router-dom';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import HomePage from './pages/HomePage';
-import { asyncPreloadProcess } from './states/isPreload/action';
-import DetailPage from './pages/DetailPage';
-import LeaderBoardPage from './pages/LeaderBoardPage';
-import Loading from './components/Loading';
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { Routes, Route } from 'react-router-dom'
+import LoginPage from './pages/LoginPage'
+import RegisterPage from './pages/RegisterPage'
+import HomePage from './pages/HomePage'
+import { asyncPreloadProcess } from './states/isPreload/action'
+import DetailPage from './pages/DetailPage'
+import LeaderBoardPage from './pages/LeaderBoardPage'
+import Loading from './components/Loading'
 
 function App() {
-  const authUser = useSelector((states) => states.authUser);
-  const isPreload = useSelector((states) => states.isPreLoad);
-  const dispatch = useDispatch();
+  const authUser = useSelector((states) => states.authUser)
+  const isPreload = useSelector((states) => states.isPreLoad)
+  const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(asyncPreloadProcess());
-  }, [dispatch]);
+    dispatch(asyncPreloadProcess())
+  }, [dispatch])
   if (isPreload) {
-    return null;
+    return null
   }
 
   if (authUser === null) {
@@ -25,23 +25,23 @@ function App() {
       <main>
         <Loading />
         <Routes>
-          <Route path='/*' element={<LoginPage />} />
-          <Route path='/register' element={<RegisterPage />} />
+          <Route path="/*" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
         </Routes>
       </main>
-    );
+    )
   }
 
   return (
     <main>
       <Loading />
       <Routes>
-        <Route path='/' element={<HomePage />} />
-        <Route path='/thread/:id' element={<DetailPage />} />
-        <Route path='/leaderboard' element={<LeaderBoardPage />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/thread/:id" element={<DetailPage />} />
+        <Route path="/leaderboard" element={<LeaderBoardPage />} />
       </Routes>
     </main>
-  );
+  )
 }
 
-export default App;
+export default App

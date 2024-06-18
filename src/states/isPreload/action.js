@@ -1,10 +1,10 @@
-import { showLoading, hideLoading } from 'react-redux-loading-bar';
-import api from '../../utils/api';
-import { setAuthUserActionCreator } from '../authUser/action';
+import { showLoading, hideLoading } from 'react-redux-loading-bar'
+import api from '../../utils/api'
+import { setAuthUserActionCreator } from '../authUser/action'
 
 const ActionType = {
   SET_IS_PRELOAD: 'SET_IS_PRELOAD',
-};
+}
 
 function setIsPreloadActionCreator(isPreload) {
   return {
@@ -12,22 +12,22 @@ function setIsPreloadActionCreator(isPreload) {
     payload: {
       isPreload,
     },
-  };
+  }
 }
 
 function asyncPreloadProcess() {
   return async (dispatch) => {
-    dispatch(showLoading());
+    dispatch(showLoading())
     try {
-      const authUser = await api.getOwnProfile();
-      dispatch(setAuthUserActionCreator(authUser));
+      const authUser = await api.getOwnProfile()
+      dispatch(setAuthUserActionCreator(authUser))
     } catch (error) {
-      dispatch(setAuthUserActionCreator(null));
+      dispatch(setAuthUserActionCreator(null))
     } finally {
-      dispatch(setIsPreloadActionCreator(false));
+      dispatch(setIsPreloadActionCreator(false))
     }
-    dispatch(hideLoading());
-  };
+    dispatch(hideLoading())
+  }
 }
 
-export { ActionType, setIsPreloadActionCreator, asyncPreloadProcess };
+export { ActionType, setIsPreloadActionCreator, asyncPreloadProcess }

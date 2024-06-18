@@ -6,26 +6,26 @@
  *   - should return leaderboards when given the RECEIVE_LEADERBOARDS action
  */
 
-import { describe, it, expect } from 'vitest';
-import { ActionType } from './action';
-import leaderboardsReducer from './reducer';
+import { describe, it, expect } from 'vitest'
+import { ActionType } from './action'
+import leaderboardsReducer from './reducer'
 
 describe('leaderboardsReducer', () => {
   it('should restore the initial state when given an unknown action', () => {
     // Arrange
-    const initialState = [];
-    const action = { type: 'UNKNOWN_ACTION' };
+    const initialState = []
+    const action = { type: 'UNKNOWN_ACTION' }
 
     // Action
-    const nextState = leaderboardsReducer(initialState, action);
+    const nextState = leaderboardsReducer(initialState, action)
 
     // Assert
-    expect(nextState).toEqual(initialState);
-  });
+    expect(nextState).toEqual(initialState)
+  })
 
   it('should return leaderboards when given the RECEIVE_LEADERBOARDS action', () => {
     // Arrange
-    const initialState = [];
+    const initialState = []
     const action = {
       type: ActionType.RECEIVE_LEADERBOARDS,
       payload: {
@@ -34,12 +34,12 @@ describe('leaderboardsReducer', () => {
           { id: 2, name: 'User 2', score: 90 },
         ],
       },
-    };
+    }
 
     // Action
-    const nextState = leaderboardsReducer(initialState, action);
+    const nextState = leaderboardsReducer(initialState, action)
 
     // Assert
-    expect(nextState).toEqual(action.payload.leaderboards);
-  });
-});
+    expect(nextState).toEqual(action.payload.leaderboards)
+  })
+})

@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
-import { postedAt } from '../utils';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { useNavigate } from 'react-router-dom'
+import { postedAt } from '../utils'
 
 function ThreadItem({
   id,
@@ -19,72 +19,72 @@ function ThreadItem({
   neutralLike,
   neutralDislike,
 }) {
-  const navigate = useNavigate();
-  const isThreadLiked = upVotesBy.includes(authUser);
-  const isThreadDisliked = downVotesBy.includes(authUser);
+  const navigate = useNavigate()
+  const isThreadLiked = upVotesBy.includes(authUser)
+  const isThreadDisliked = downVotesBy.includes(authUser)
   function onLikeClick(e) {
-    e.stopPropagation();
+    e.stopPropagation()
     if (!isThreadLiked && !isThreadDisliked) {
-      like(id);
+      like(id)
     } else if (isThreadDisliked) {
-      neutralDislike(id);
-      like(id);
+      neutralDislike(id)
+      like(id)
     } else if (isThreadLiked) {
-      neutralLike(id);
+      neutralLike(id)
     }
   }
 
   function onDislikeClick(e) {
-    e.stopPropagation();
+    e.stopPropagation()
 
     if (!isThreadLiked && !isThreadDisliked) {
-      dislike(id);
+      dislike(id)
     } else if (isThreadLiked) {
-      neutralLike(id);
-      dislike(id);
+      neutralLike(id)
+      dislike(id)
     } else if (isThreadDisliked) {
-      neutralDislike(id);
+      neutralDislike(id)
     }
   }
 
   const onThreadClick = () => {
-    navigate(`/thread/${id}`);
-  };
+    navigate(`/thread/${id}`)
+  }
 
   const onThreadPress = (event) => {
     if (event.key === 'Enter' || event.key === ' ') {
-      navigate(`/talks/${id}`);
+      navigate(`/talks/${id}`)
     }
-  };
+  }
   if (title.length > 0) {
     return (
       <div
-        className='thread-item border border-top-0 border-start-0 border-end-0 pe-auto'
+        className="thread-item border border-top-0 border-start-0 border-end-0 pe-auto"
         onClick={onThreadClick}
         onKeyDown={onThreadPress}
       >
         <header>
-          <div className='d-flex flex-row mt-3'>
-            <div className='p-2'>
+          <div className="d-flex flex-row mt-3">
+            <div className="p-2">
               <img
                 src={user.avatar}
-                className='rounded-circle'
-                height='25'
-                width='25'
-                alt='Avatar'
+                className="rounded-circle"
+                height="25"
+                width="25"
+                alt="Avatar"
               />
             </div>
-            <div className='p-2'>
-              <p className='fw-medium'>{user.name}</p>
+            <div className="p-2">
+              <p className="fw-medium">{user.name}</p>
             </div>
-            <div className='p-2'>
-              <p className='fw-light fst-italic fs-6'>{postedAt(createdAt)}</p>
+            <div className="p-2">
+              <p className="fw-light fst-italic fs-6">{postedAt(createdAt)}</p>
             </div>
           </div>
-          <div className='item-cateogry'>
+          <div className="item-cateogry">
             <button
-              type='button'
-              className='btn btn-outline-secondary btn-sm '
+              type="button"
+              className="btn btn-outline-secondary btn-sm "
               disabled
             >
               #{category}
@@ -92,13 +92,13 @@ function ThreadItem({
           </div>
         </header>
         <article>
-          <div className='d-flex flex-column'>
+          <div className="d-flex flex-column">
             <div>
-              <p className='fw-medium'>{title}</p>
+              <p className="fw-medium">{title}</p>
             </div>
             <div>
               <p
-                className='text-justify'
+                className="text-justify"
                 dangerouslySetInnerHTML={{
                   __html:
                     body.length > 250 ? `${body.substring(0, 250)}...` : body,
@@ -108,36 +108,36 @@ function ThreadItem({
           </div>
         </article>
         <footer>
-          <div className='d-flex flex-row mb-2 reaction'>
+          <div className="d-flex flex-row mb-2 reaction">
             <div>
-              <button type='button' className='btn' onClick={onLikeClick}>
+              <button type="button" className="btn" onClick={onLikeClick}>
                 {isThreadLiked ? (
-                  <i className='bi bi-hand-thumbs-up-fill text-primary' />
+                  <i className="bi bi-hand-thumbs-up-fill text-primary" />
                 ) : (
-                  <i className='bi bi-hand-thumbs-up' />
+                  <i className="bi bi-hand-thumbs-up" />
                 )}{' '}
                 {upVotesBy.length}
               </button>
             </div>
             <div>
-              <button type='button' className='btn' onClick={onDislikeClick}>
+              <button type="button" className="btn" onClick={onDislikeClick}>
                 {isThreadDisliked ? (
-                  <i className='bi bi-hand-thumbs-down-fill text-danger' />
+                  <i className="bi bi-hand-thumbs-down-fill text-danger" />
                 ) : (
-                  <i className='bi bi-hand-thumbs-down' />
+                  <i className="bi bi-hand-thumbs-down" />
                 )}{' '}
                 {downVotesBy.length}
               </button>
             </div>
             <div>
-              <button type='button' className='btn'>
-                <i className='bi bi-reply' /> {totalComments}
+              <button type="button" className="btn">
+                <i className="bi bi-reply" /> {totalComments}
               </button>
             </div>
           </div>
         </footer>
       </div>
-    );
+    )
   }
 }
 ThreadItem.propTypes = {
@@ -155,6 +155,6 @@ ThreadItem.propTypes = {
   dislike: PropTypes.func,
   neutralLike: PropTypes.func,
   neutralDislike: PropTypes.func,
-};
+}
 
-export default ThreadItem;
+export default ThreadItem
