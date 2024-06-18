@@ -35,6 +35,6 @@
     "react/jsx-no-bind": "off",
     "react/jsx-boolean-value" : "off",
     "jsx-a11y/anchor-is-valid" : "off",
-    "max-len": "off",
+    "max-len": "off"
   }
 }
