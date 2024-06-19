@@ -1,9 +1,18 @@
+/**
+ * skenario testing
+ *
+ * - asyncPreloadProcess Thunk
+ *   - should dispatch setAuthUserActionCreator when getOwnProfile succeeds
+ *   - should dispatch setAuthUserActionCreator with argument null when getOwnProfile API call fails
+ */
+
 import { hideLoading, showLoading } from 'react-redux-loading-bar'
 import { describe, vi, it, expect, beforeEach, afterEach } from 'vitest'
 import api from '../../utils/api'
 import { setAuthUserActionCreator } from '../authUser/action'
 import { asyncPreloadProcess, setIsPreloadActionCreator } from './action'
 
+// Mock responses
 const fakeErrorResponse = () => {
   throw new Error('Ups something wrong')
 }
@@ -17,28 +26,29 @@ const fakeUsersResponse = [
   },
 ]
 
-describe('AsyncPreloadProcess Thunk', () => {
+describe('asyncPreloadProcess Thunk', () => {
   beforeEach(() => {
+    // Backup original API method
     api._getOwnProfile = api.getOwnProfile
   })
 
   afterEach(() => {
+    // Restore original API method
     api.getOwnProfile = api._getOwnProfile
     delete api._getOwnProfile
   })
 
-  it('shoud dispatch setAuthUserActionCreator when getOwnProfile success', async () => {
-    // arrange
-    // stub implementation
+  it('should dispatch setAuthUserActionCreator when getOwnProfile succeeds', async () => {
+    // Stub implementation to return fake user response
     api.getOwnProfile = () => Promise.resolve(fakeUsersResponse)
 
-    // mock dispatch
+    // Mock dispatch function
     const dispatch = vi.fn()
 
-    // action
+    // Execute the thunk
     await asyncPreloadProcess()(dispatch)
 
-    // assert
+    // Assert dispatch calls
     expect(dispatch).toHaveBeenCalledWith(showLoading())
     expect(dispatch).toHaveBeenCalledWith(
       setAuthUserActionCreator(fakeUsersResponse),
@@ -47,19 +57,17 @@ describe('AsyncPreloadProcess Thunk', () => {
     expect(dispatch).toHaveBeenCalledWith(hideLoading())
   })
 
-  it('should dispatch setAuthUserActionCreator with argument null when getOwnProfile API call failed', async () => {
-    // arrange
-
-    // stub implementation
+  it('should dispatch setAuthUserActionCreator with argument null when getOwnProfile API call fails', async () => {
+    // Stub implementation to return fake error response
     api.getOwnProfile = () => Promise.reject(fakeErrorResponse)
 
-    // mock dispatch
+    // Mock dispatch function
     const dispatch = vi.fn()
 
-    // action
+    // Execute the thunk
     await asyncPreloadProcess()(dispatch)
 
-    // assert
+    // Assert dispatch calls
     expect(dispatch).toHaveBeenCalledWith(showLoading())
     expect(dispatch).toHaveBeenCalledWith(setAuthUserActionCreator(null))
     expect(dispatch).toHaveBeenCalledWith(setIsPreloadActionCreator(false))
