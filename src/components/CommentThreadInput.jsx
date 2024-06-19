@@ -4,10 +4,9 @@ import PropType from 'prop-types'
 function CommentThreadInput({ addComment }) {
   const [comment, setComment] = useState('')
 
-  function onSubmit(event) {
+  function onSubmit() {
     addComment(comment)
     setComment('')
-    event.preventDefault()
   }
   return (
     <form
