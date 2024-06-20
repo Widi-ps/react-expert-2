@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import PropType from 'prop-types'
 
 function CommentThreadInput({ addComment }) {
   const [comment, setComment] = useState('')
 
-  function onSubmit() {
+  function onSubmit(event) {
+    event.preventDefault()
     addComment(comment)
     setComment('')
   }
@@ -25,7 +26,7 @@ function CommentThreadInput({ addComment }) {
         />
       </div>
       <div className="d-flex justify-content-end mb-3">
-        <button type="submit" className="btn btn-dark px-4">
+        <button type="submit" className="btn btn-dark fw-bold rounded-0 px-4">
           Balas
         </button>
       </div>

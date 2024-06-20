@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import Header from '../components/Header'
 import ThreadDetail from '../components/ThreadDetail'
@@ -20,7 +20,6 @@ function DetailPage() {
   const dispatch = useDispatch()
   const threadDetail = useSelector((states) => states.threadDetail)
   const authUser = useSelector((states) => states.authUser)
-  const navigate = useNavigate()
 
   useEffect(() => {
     dispatch(asyncReceiveThreadDetail(id))
@@ -43,8 +42,8 @@ function DetailPage() {
     dispatch(asyncToggleNeutralDislikeThreadDetail(idUser))
   }
   function onAddComment(content) {
-    navigate(`/thread/${id}`)
     dispatch(asyncAddCommentOnThread({ content, commentTo: id }))
+    dispatch(asyncReceiveComments(id))
   }
 
   return (
